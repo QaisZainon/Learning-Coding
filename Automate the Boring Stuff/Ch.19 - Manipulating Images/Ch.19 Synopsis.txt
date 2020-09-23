@@ -1,0 +1,73 @@
+from PIL import ImageColour
+ImageColor.getcolor('red','RGBA')
+# gets a colour based on name, returns the RGBA values of it 
+# image numbers are in tuples, (1,2,5,6)(x,y,x,y)
+# the first x,y is the left top corner and the second x,y is the right bottom corner
+
+from PIL import Image 
+catIm = Image.open('zophie.png')
+# loads the png into python
+catIm.size
+# returns the size of the image
+width, height = catIm.size
+width
+height
+# defines width and height from the tuple data from .size
+catIm.filename
+# returns the filename
+catIm.format
+# returns the filename
+catIm.format_description
+# returns the description of the format
+catIm.save('zophie.jpg')
+# saves the file 
+im = Image.new('RGBA',(100,200),'purple')
+# defines colour, then the ints define the size as width and length, the last one define the colour
+# if the colour argument is left blank it is defaulted to transparency
+croppedIm = catIm.crop((335, 345, 565, 560))
+# crops the image, the size is based on the previosuly mentioned tuple data
+# the cropped image creates a new images data instead of cropping it on the spot
+
+catIm = Image.open('zophie.png')
+catCopyIm = catIm.copy()
+# copies the image that was passed into a new image data type
+faceIm = catIm.crop((335, 345, 565, 560))
+# crops the image
+catCopyIm.paste(faceIm,(0,0))
+# pastes onto the first image the argument containing that image
+# the second argument is the coordinates of the paste
+# Pillows cpy and paste doesnt use the computer's clipboard
+# paste changes the existing image rather than creating a new one, so youd need to copy a new image beforehand
+# passing the image as the third argument makes the transparent parts transparent
+Image.resize((int,int))
+# only accepts two interger tuples
+# it creates a new image object
+catIm.rotate(90).save('rotated90.png)
+# creates a new image data, rotates it based on the int or float then saves it
+# you can call the roate individually, but chaining it also works
+# adding a second argument expand = True leads to the image dimensions expanding to fit the whole image
+catIm.transpose(Image.FLIP_LEFT_RIGHT)
+catIm.transpose(Image.FLIP_TOP_BOTTOM)
+# flips the image, this creates a new image object
+.getpixel()
+# the arguments is a tuple data of two int as the coordinates
+# gets the colour of the pixel 
+.putpixel()
+# same arguments as .getpixel(), can add third argument as the colour
+# changes the colour of the pixel into the specified colour
+from PIL import ImageColor
+Image.getcolor('darkgrey','RGBA')
+# gets the colour thru name
+
+from PIL import Image, ImageDraw
+im = Image.new('RGBA', (200,200), 'white')
+draw = ImageDraw.Draw(im)
+# makes the image object into an ImageDraw object
+
+# Check the Drawing Example for the commands
+
+text()
+# takes four arguments, xy, text, fill, font 
+textsize()
+# first argument is the text, second is the image font, returns two integer tuple of the width and height of the text
+# just look at font.py, idk how to summarise

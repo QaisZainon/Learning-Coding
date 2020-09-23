@@ -1,0 +1,192 @@
+G-Mail
+import ezgmail
+ezgmail.send('recipient@example.com','Subject line','Body of the email',
+['attachment1.jpg','attachment2.mp3'],
+cc='friendexample.com',
+bcc='otherfriend@example.com)
+# sends an email with its contents based on the str 
+# attachments can be added using filename in os.cwd()
+# Theres this thing called CC and BCC (CarbonCopy) that you can add as a second agument
+
+ezgmail.init()
+ezgmail.EMAIL_ADDRESS
+# returns the current email address that is in the tokem.json file
+# token.json is to be treated akin to a password lest you grant access to undesirable parties
+
+unreadThred = ezgmail.unread()  # List of Gmail Thread objects.
+ezgmail.summary(unreadThread)
+# returns a list of unread gmail threads
+# prints a summary of the conversation thread in that list
+
+# message attributes contain a list of the GmailMessage, these are 
+# subject, body, timestamp, sender and recipient
+# adding .messages and .body will return the specific snippet requested
+.subject
+.body
+.timestamp
+.sender
+.recipient
+
+# similar to unread function, 
+ezgmail.recent(maxResults = 100)
+# returns the 25 most recent threads on default without second argument
+
+ezgmail.search('')
+# returns the specific emails similar to queries
+# can pass special operators that you can enter into the search box function
+https://support.google.com/mail/answer/7190?hl=en/.
+
+.downloadAttachment('something.jpg)
+# downloads the attached file
+.downloadAllAttachments(downloadFolder = 'filename')
+# downloads all of them at once
+# if a folder already exists in the filename, it will overwrite it
+
+======================================================================================================================================
+
+SMTP
+# industry standard to deal with sending emails
+import smtlib
+# downloads lib relating to smtp, that helps websites send email, simialr to html
+# Gmail uses SMTP server this domain name
+smtp.gmail.com
+# port is usually 587
+smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
+# connects to an SMPT mail server with methods for sending emails
+# if this fails, then youll have to use a different one as it is not supported by your port
+smtpObj = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+
+smtpObj.ehlo()
+# you need to use this after establishing a connection to the server
+smtpObj.starttls()
+# enables encryption onto the connection 
+# if return has 220, it means that the server is encrypted and ready to use 
+
+smtpObj.login('my_email_address@example.com', 'password')
+# logins into your gmail, will need to chnage the SMTP if using other email providers
+# will return 235 , this means that thr authnetication is accepted
+# inputting passwords into your programs will introduce unnecessary risks
+
+smtpObj.sendmail('my_email_address@example.com','recipient@example.com','Subject: something\nSomething')
+# the command requires three arguments
+# your email# recipient email
+# email body as a string
+# \n needs to be inputted to seperate the subject and the body
+# if the return is empty, that means the all recipients were successful in receiving the mail
+# if there is an email address in the dictionary, these would be the failed mails 
+
+smtpObj.quit()
+# disconnects the program from the SMTP server
+# the return has to be 221, indicating the session is ending
+
+================================================================================================================
+
+IMAP
+# industry standard for receiving email protocols
+# uses imapclient instead of imaplib module due to ease of use
+https://imapclient.readthedocs.io/.
+# pyzmail helps parse the complicated format from imap into an easy to read string
+
+import imapclient
+imapObj = imapclient.IMAPClient('imap.gmail.com', ssl = True)
+# similar to SMTP, you need the client to connect to a server
+imapObj.login('email@example.com','password')
+# login, if the server rejects python will return an imaplip.error exception
+
+# Retrieving emails is a two step process
+# firstly select the relevant folder, then call imapCLient object search() method
+imapObj.list_folders()
+# returns a list of folders in your gmail
+# eg INBOX, Trash, Starred
+imapObj.select('INBOX', readonly = True)
+# select the folder, error is raised if it doesnt exist
+# the keyword argument prevents you from accidently making chnages to any emails
+
+# Search Keys
+# you can add OR / NOT in front of the search Keys
+'ALL'
+# Returnas all messages in the folder
+'BEFORE date', 'ON date', 'SINCE date'
+# returns based on the date
+'SUBJECT string', 'BODY string', 'TEXT "search with spaces"'
+# returns string found on respective criterion
+# if the string has spaces, enclose it with double quotes
+'FROM string', 'TO string', 'CC string', 'BCC string'
+# returns the email address based on the criterion,
+# if there more than one email, just enclose it with double quotes
+'SEEN', 'UNSEEN'
+# Returns all messages with the \Seen or \Unseen flag
+'ANSWERED', 'UNANSWERED'
+# Returns all messages with \Answered or \Unanswered flag
+'DELETED', 'UNDELETED'
+# Returns all messages that are either deleted or not deleted
+'DRAFT', 'UNDRAFT'
+# Returns all messages that are dratf or undraft in your Draft folders
+'FLAGGED', 'UNFLAGGED'
+# Returns messages that are flagged or unflagged 
+'LARGER bytes', 'SMALLER bytes'
+# Returns all message larger or smaller bytes
+'NOT search-key'
+# returns messages that dont have the search-key
+'OR search-key1 search-key2'
+# Returns the message that match either the first or second search-key
+# The search method doesnt return emails but rather unique IDs for the emails
+# the IDs can then be passed to the fetch() function to get them
+# searches more than 10000 bytes gets an error
+import imaplib
+imaplib._MAXLINE = 10000000
+# sets the limit higher to avoid the error
+
+rawMessages = imapObj.fetch(UIDs,['BODY[]'])
+import pprint
+pprint.pprint(rawMessages)
+# you can ignore the SEQ, as it is similar to UID
+# the return value is unintangible, so youll need pyzmail
+#  for select, readonly does not mark the it as read
+# change it to false by delclaring a new select() and itll be read
+
+import pyzmail
+message = pyzmail.PyzMessage.factory(rawMessages[UIDs][b'BODY[]'])
+# b stands for bytes
+# makes it so that you can actually read the emails from imap
+message.get_subject()
+# gets the subject
+message.get_address('from')
+# gets the sender's email
+message.get_address('to')
+# gets the receiver's address
+message.get_addresses('cc')
+# gets the cc
+message.get_addresses('bc')
+# gets the bcc
+# it returns to strings, one is the name and the other is the email address
+
+# emails are sent in either html or text files
+# theres text and html parts, then you need to decode with argument for its character set 
+# fuck this is complex, just look at the example
+message.text_part != None 
+# checks whether the text actually exists or not
+message.text_part.get_payload().decode(message.text_part.charset)
+# gets the text string of the email
+message.html_part.get_payload().decode(message.text_part.charset)
+# gets the html string of the email
+
+imapObj.select_folder('INBOX', readonly = False)
+# the readonly argument has to be false so that you can actually change the emails
+UIDs = imapObj.search(['ON 09-Jul-2019'])
+imapObj.delete_messages(UIDs)
+# marks it for deletion
+imapObj.expunge()
+# deletes all emails with the delete mark
+# some servers delete it without the expunge argument
+
+imapObj.logout()
+# logout out, if open too long it will disconnect form server and youll have to reestablish connection
+
+===============================================================================================================================================
+
+# Text messages with SMS email Gateways
+# You can actually send sms or mms through the phone provider's email
+# SMS or MMS gateway you need to find the provider's email
+
+# honestly im too lazy to be bothered with twilio

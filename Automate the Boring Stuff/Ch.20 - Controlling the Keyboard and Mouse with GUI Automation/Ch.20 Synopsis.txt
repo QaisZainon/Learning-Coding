@@ -1,0 +1,151 @@
+# Graphical User Interface
+import pyautogui
+# moving the mouse to the four corners of the screen will result in the GUI stopping
+# logging out would shut down the program, ctrl-alt-del
+wh = pyautogui.size()
+# obtains Screen resolution, returns:
+wh = Size(width=1366, height=768)
+# this is called a named tuple, calling wh[0] or wh.width returns width 
+pyautogui.moveTo(100, 100, duration = 0.25)
+# the first two int arguments are for the coordinates for the mouse
+# the duration is the time for the command to execute, default is 0
+pyautogui.move(100, 0, duration = 0.25)
+# moves the cursor based on the current location of the mouse, moves based on pixel
+# negative integers moves it upward or leftward
+p = pyautogui.position()
+# gets the current mouse position, the return is the coordinates
+# you can call it using p[0] or p.x, this is because the returned data is a named tuple 
+
+pyautogui.click(10, 5, button = 'right')
+# clicks the mouse button, at coordinates 10, 5
+# the third argument can be changed to 'left', 'middle', 'right'
+pyautogui.mouseDown()
+pyautogui.mouseUp()
+# these two are essetianlly the process of mouse button pressing
+# the click one is a convenient wrapper 
+pyautogui.doubleClick()
+# performs a double click
+pyautogui.rightClick()
+# does a right click
+pyautogui.middleCLick()
+# does a middle click
+
+# dragging essentially means that the mouse click before moving
+# similar to moveTo() and move()
+pyautogui.dragTo()
+# drags the mouse cursor to a new location
+pyautogui.drag()
+# drags the mouse cursor based on the current location
+pyautogui.scroll(200)
+# scrolls for you, negative means scrolling down, positive means scrolling up
+
+pyautogui.mouseInfo()
+# used at the interactive shell
+# gives info of the position of the cursor as well as the colour under it
+im = pyautogui.screenshot()
+# takes a screenshot
+
+pyautogui.pixel(50,200)
+# returns the RGB colour of the pixel, the two int is the coordinates
+pyautogui.pixelMatchesColor(x, y(RGB values))
+# returns boolean value if the pixel is the same colour as the third argument
+# can use this for the program to check the proper colour of the app
+
+b = pyautogui.locateOnScreen('something.png')
+# finds the coordinates of the picture in question
+b[0]
+b.left
+# returns the values from tuple
+# if theres multiple matches, itll return a generator that needs to be passed to a list to be readable
+# you can also just pass an image to pyautogui.click to click on the button
+# applies to moveTo() and dragTo()
+
+pyautogui.getActiveWindow()
+# gets the active program, it usually only one, the most forward window I guess?
+# you can retrive the object's attributes
+left, right, top, bottom
+# A single integer for the x or y coordinate of the window
+topleft, topright, bottomleft, bottomright
+# Tuple of two integers for the (x, y) coordinates of the windows corner
+midleft, midright, midleft,midright
+# a tuple of two integers of the middle window's side
+width, height
+# Integer for window's dimensions in pixel
+size
+# Two integers for (width, height) of the window
+area 
+# single integer representing the area of the windows in pixel
+center
+# Tuple of two integers coordinate of the window's center
+centerx, centery
+single int of the x or y coordinate of the window's center
+box 
+# tuple of four int for the measurement of the window
+title
+# string of text in the title bar at the top of the window
+
+pyautogui.getAllWindows()
+# returns a list of window objects for every visible window
+pyautogui.getWindowsAt(x, y)
+# returns a list of window objects for every visible windows that includes the point(x, y)
+pyautogui.WindowsWithTitle(title)
+# Returns a list of window objects similar to the above functions including its titles
+pyautogui.getActiveWindow()
+# returns window object that is currently receiving keyboard focus
+pyautogui.getAllTitles()
+# returns a list of strings of every visible window
+
+# you can actually move and manipulate the size of the window
+# using the width and topleft function
+
+fw = pyautogui.getActiveWindow()
+fw.isMaximized 
+# Returns True if the window is maximized
+fw.isMinimized
+# Returns True if the window is minimized
+fw.isActive
+# Returns True if window is the active window
+fw.maximize()
+# maximizes the window
+fw.minimize()
+# minimizes the window
+fw.activate()
+# activates the window state
+fw.restore
+# Undoes a minimize/maximize action 
+# yo apparent you can add time.sleep(5); fw.activate()
+# it waits 5 seconds while you activate a new window
+
+pyautogui.click(100, 200); pyautogui.write('Hello, world!')
+# writes the defined text into the active window
+# the ';' is a seperator so that no new active windows are activated between the click and write
+# can add a second argument as the time delayed between input keys
+# you can also make key inputs by passing a string
+# Check more at PyKeyboard Attributes
+
+pyautogui.keyDown('')
+# presses a key
+pyautogui.keyUp('')
+# releases the pressed key
+pyautogui.press('')
+# presses a specified key
+pyautogui.hotkey('ctrl','c')
+# takes multiple keyboard strings,presses and releases them in order
+
+pyautogui.sleep()
+# Pauses the program for the int argument
+pyautogui.countdown()
+# Counts down over the int amount
+
+# pop-up message boxes for inputs
+pyautogui.alert(text)
+# Displays text and has a single OK button
+pyautogui.confirm(text)
+# Displays text and has OK and Cancel buttons, returns OK or Cancel based on user choice
+pyautogui.prompt(text)
+# Displays text and has a text field for user to type in, it will be returned into a string
+pyautogui.password(text)
+# Simlar to input but uses asterisk to hide that shit, useful with passwords
+# all take a secondary argument for the title of the pop-up box
+
+https://pymsgbox.readthedocs.io

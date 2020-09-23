@@ -1,0 +1,100 @@
+# time module
+import time
+time.time()
+# returns the number of seconds passed since UTC
+# check calcProd.py to see how you measure the time for the code to read
+time.ctime()
+# returns a string description of the current time
+# basically takes from the time of the UTC and returns the current time
+https://docs.python.org/3/library/profile.html.  # better alternative to keeping time
+time.sleep()
+# blocks the programs for awhile based on the int argument passed
+# eg with 1, it pauses for 1 second
+round(3.12543,2)
+# rounds it up to two intergers, if left empty will round up to nearest number
+
+=============================================================================================================================
+
+# Datetime module
+import datetime
+datetime.datetime.now()
+# returns the current dates and time in a list format
+dt = datetime.datetime(2020, 6, 23, 21, 47, 4, 883730)
+dt.year, dt.month, dt.day
+dt.hour, dt.minute, dt.second
+# returns the defined?
+datetime.datetime.fromtimestampl(time.time())
+# combine the time function to datetime to find the current time
+# converts a unix epoch timestamp into a datetime object
+# you can use operators to determine which is greater
+delta = datetime.timedelta(days = 11, hours = 10, minutes = 9, seconds = 8)
+# returns a duration of time rather than a moment in time
+# the data is scored into days, seconds and microseconds
+delta.total_seconds()
+# returns the total amount fo seconds for the duration of time
+# basically datetime can use arithmetic operators
+
+.strftime()
+# stands for string format time
+# makes the returns for time much more readable
+strftime() directive
+%Y  # Year with century, '2014'
+%y  # Year without century, '00' to '99'
+%m  # Month as a decimal number, '01 to '12'
+%B  # Full month name, 'November'
+%b  # Abbreviated month name, 'Nov'
+%d  # Day of month, '01' to '31'
+%j  # Day of the year, '001' to '366'
+%w  # Day of the week, '0'(Sunday) to '6'(Saturday)
+%A  # Full weekday name, 'Monday'
+%a  # Abbreviated weekday name, 'Mon'
+%H  # Hour(24-hour clock), '00' to '23'
+%I  # Hour(12-hour clock), '01' to '12'
+%M  # Minutes, '00' to '59'
+%S  # Seconds, '00' to '59'
+%p  # 'AM' or 'PM'
+%%  # Literal '%' character
+
+.strptime()
+# literally does the opposite of strftime
+# but you have to define the second argument based on the strftime directive
+datetime.datetime.strpformat('October 21, 2019', '%B %d, %Y')
+output:
+datetime.datetime(2019, 10, 21, 0, 0)
+# Python will raise a ValueError exception if the formats are wrong
+
+=================================================================================================================================
+
+# Multithreading
+# basically python can read multiple lines of code, so far its been single-threading
+# Checks threadDemo.py
+threadObj = threading.Thread(target = function)
+threadObj.start()
+# basically makes a second thread 
+# if its arguments its different
+threadObj = threading.Tread(target = print, args = ['Cats','Dogs','Frogs'], kwargs = {'sep':' & '})
+# the arguments must be defined with args and keyword arguments defined as kwargs
+# theres a wrong way of doing it that would result in None
+# concurrency Issues might happen if there are multiple threads
+# use local variables more often to avoid this issue
+https://nostarch.com/automatestuff2/.
+.join()
+# forces other threads to wait for it to finish before continue execution
+
+=================================================================================================================================
+
+import subprocess
+# Launching other programs from python
+Popen()
+# Process open
+poll()
+# returns based on the Popen program condition
+wait()
+# blocks until the process has been terminated
+subprocess.Popen(['C:\\Windows\\notepad.exe', 'C:\\Users\Al\\hello.txt'])
+# can execute multiple commands for Popen
+
+# Task Scheduler is pretty cool, runs programs based on the time pog
+# you can actually open multiple python
+subprocess.Popen(['C:\\Users\\Dr. Wan Asna\\AppData\\Local\\Programs\\Python\\Python38\\python.exe', 'Automate the Boring Stuff\Ch.01 - Python Basics\hello.py'])
+# can use 'start' to automatically open the file that you want in its designated program
