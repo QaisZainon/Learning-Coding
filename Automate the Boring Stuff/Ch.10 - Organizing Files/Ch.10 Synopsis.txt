@@ -1,0 +1,36 @@
+#import shutil #imports (shell utilize) function that lets you copy, move, rename and delete files
+#shutil.copy(source, destination) #will copy a file from source to the destination path, can be either string or path objects
+#if destination is filename, the name of the text will be the same, if however there is a name(.txt), then it will use the argument
+#shutil.copytree() #will copy an entire file and creates a new folder ,it both has to be strings
+#shutil.move(source, destination) #will move source path to destination
+#if there is a similar file name in the destination it will be overwritten
+#if destination is a name(.txt) then it will be renamed
+#if there is no file in destination,it will rename it without the.txt
+
+#os.unlink(path) #delete the file at path
+#os.rmdir(path) #deletes a folder, however the folder must be empty
+#shutil.remtree(path) #removes the folder at path, and all files and folders in it
+#shutil.remtree() is risky as it permanently deletes the folder
+
+#import send2trash
+#send2trash.send2trash() #is a much safer delete method as it will send it to the recycling bin
+
+#os.walk() #basically 'walks' in the whole directory, usually will need to make a few variables and used for loop statements
+
+#import zipfile #this lets you read the contents of a zipfile
+#v=zipfile.ZipFile() #opens the zipfile similar to open() function
+#you can add .namelist() behind in order to return a list of strings for all the files and folders in the ZIP file
+#passing a .getinfo() will result in information about a file in the zip file
+#you can then pass a .file_size or .compress_size to know the size of the file normally and ocmpressed
+#Zipfile = the whole zip while .getinfo = gives only  single file int he zip
+
+#zipfile.ZipFile(p/'example.zip').extractall() #extracts all the files and folder into your cwd()
+#you could add a string for the argument for a location for where the file is to be extracted, it will create a file if there isnt
+#.extract() #this will only extract a single file form the zip folder
+#you could add a second argument for the location similarly like .extractall()
+#to create your own zip file you need to pass 'w' as the second argument similar to open(), the first argument will be used as the name
+#then add the .write()
+#the first argument needs to be the file that you want to compress
+#the second argument is the compression type parameter, usually you just stick to (,compress_type=zipfile.ZIP_DEFLATED)
+#write mode will erase all the contents of the zip file
+#use append mode if you just want to add a single file

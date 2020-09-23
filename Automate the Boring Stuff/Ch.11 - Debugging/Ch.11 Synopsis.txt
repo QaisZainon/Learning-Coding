@@ -1,0 +1,32 @@
+#raise Exception('') #replies with an error
+#usually paired with a try and except function mainly to continue the code instead of completely stopping it
+#import traceback
+#try:
+#...          raise Exception('This is the error message.')
+#except:
+#...          errorFile = open('errorInfo.txt', 'w')
+#...          errorFile.write(traceback.format_exc()) #returns a string
+#...          errorFile.close()
+#...          print('The traceback info was written to errorInfo.txt.')
+#sends the exception into a text file, theres probably more effective ways to code this
+
+#assert is bascially a sanity check to see it the code is functional or not
+#assert condition, string(to display when the condition is False)
+#if it results in a true, then nothing happens, faster way of checking code
+#assert is for programmer errors, not user errors
+
+#import logging
+#logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s -  %(levelname)s -  %(message)s')
+#use the logging for debugging instead of print()
+#logging.disable(logging.CRITICAL) #disables any logging messages
+#for programers, not users
+#the logging.basicConfig(level=)the level you put in will only show
+#eg. putting debug will show all since debug is the lowest
+#eg. putting error will only show error and critical, skipping the lower ones
+#logging.debug('')
+#logging.info('')
+#logging.warning('')
+#logging.error('')
+#logging.critical('')
+
+#adding (filename='something.txt') as your first argument in logging.basicConfig will send all the errors into a text message
