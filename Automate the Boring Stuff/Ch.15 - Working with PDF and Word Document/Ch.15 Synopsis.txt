@@ -1,0 +1,106 @@
+# PDF
+import PyPDF2
+# Imports module that reads and writes pdf files
+pdfFileObj = open('meetingminutes.pdf', 'rb')
+# Opens the file, with the read in binary
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+# Reads the pdf
+pdfReader.numPages
+# Number of pages in the pdf
+pageObj = pdfReader.getPage(0)
+# Get the page that you want
+# Uses zero-based index regardless the page num in the pdf itself
+pageObj.extractText()
+# Returns a string of the pages text 
+# The string is sometimes imperfect 
+pdfReader.isEncypted
+# Checks whether the the pdf is encrypted
+pdfReader.decrypt('password')
+# Decrypts the pdf with the correct password 
+
+# You cant actually edit the PDf, so you'll need to copy an existing PDF,
+# into a new PDF to edit it, check copying.py
+.Pdffilewriter
+# writes into a pdf, akin to a place holder
+.addpage()
+# adds a page into at the back of the pdf
+.write()
+# actually writes it the pdf object into a pdf file
+.rotateClockwise()
+.rotateCOunterClockwise()
+# Rotates it clockwise or anticlockwise
+# Integers 90, 180 or 270 can be passedas an argument
+
+# OverlyingPages
+thepage.mergePage(thesecondpage)
+# merges two pages
+
+# EncyptingPDF.py
+.encrypt('password')
+# Encrypts the file with a password
+# pdf has user and owner password
+# pass two arguments for each, if there is only one then both argument
+
+================================================================================================================
+
+# Word
+import docx
+# Module regarding .docx files
+# Three data type, document, paragraph and run objects
+# Run object is basically a string with the same tyle of font
+# Changing fonts will result in a different font
+doc = docx.Document('demo.docx')
+# Opens a docx file
+doc.paragraph
+# Gets the paragraphs in the docx file
+doc.paragraphs[0].text
+# Returns a text based on the paragraph
+doc.paragraph[0].runs 
+# Gets all the runs of the specified paragraph
+# adding .text returns the text
+
+# Run Object text Attributes
+bold
+# Text appears bold
+italic
+# Text appears in italic
+underline
+# Text is underline
+strike
+# Text appears strikethrough
+double_strike
+# Text appears with double strike
+all_caps
+# Text appears in capital letters
+small_caps
+# Text appears in capital letters, qith lowercase letters two points smaller
+shadow 
+# Text appears with shadow
+outline
+# Text appears outlined rather than solid
+rtl 
+# text is written right to left
+imprint
+# text appears pressed into the page
+emboss
+# text appears raised off the page in relief
+style
+# changes the style
+
+doc.add_paragraph
+# adds a paragraph 
+doc.save('something.docx')
+# saves the document
+add_run('')
+# adds a different run into an existing paragraph
+# for run and add paragraph, a second argument can be passed for the word style
+add_heading('Headings' ,0)
+# adds a heading, second argument can be from 0 to 4
+# 0 = Title, 1-4 = Headings type
+add_break()
+# adds a break
+add_break(docx.enum.text.WD_BREAK.PAGE)
+# breaks into a different page
+add_picture('zophie.png', width=docx.shared.Inches(1), height=docx.shared.Cm(4))
+# adds a picture, size needs to be defined
+# if size is not defined then the picture will use the default size

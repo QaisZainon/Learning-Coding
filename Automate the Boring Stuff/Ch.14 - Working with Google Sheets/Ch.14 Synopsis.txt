@@ -1,0 +1,96 @@
+import ezsheets
+# imports module for excel sheet in your googledrive
+# The excel ID is in the link after the spreadsheets/d/ and before the /edit
+ss = ezsheets.Spreadsheet('ID')
+# opens an existing excel file in google drive
+ss.title
+# Returns a title for the excel
+ss = ezsheets.createSpreadsheet('Title for the excel')
+# Makes a new excel with title defined
+ss = ezsheets.upload('excel.xlsx')
+# Uploads an excel file into the google drive
+ezsheets.listSpreadsheets()
+# lists all the spreadsheets in your google account
+# the return value is firstly the ID proceeded with title
+
+ss.title = 'title'
+# Changes the title name
+ss.spreadsheetId
+# The unique ID
+ss.url
+# The original url
+ss.sheetTitles
+# Title of all Sheet objects
+ss.sheets 
+# The Sheet objects in this spreadsheet, in order
+ss.sheets[0]
+ss.[0]
+# The first sheet object in the spreadsheet
+ss['Title']
+# Access sheets using title
+del ss[0]
+# Deletes the first Sheet object in the spreadsheet
+ss.refresh
+# Use this when the google spreadsheet was changed, to match the online data
+
+ss.downloadAsExcel()
+# Downloads the spreadsheet as an Excel file
+ss.downloadAsODS()
+# Downloads as an OpenOffice file
+ss.downloadAsCSV()
+# Only downloads the first sheet as a CSV file
+ss.downloadAsTSV() 
+# Only downloads the first sheet as TSV file
+ss.downloadAsPDF()
+# Downloads the spreadsheet as a PDF
+ss.downloadAsHTML()
+# Downloads the spreadsheet as a ZIP of HTML files
+# Specify the download file name in the brackets
+
+ss.delete()
+# Deletes the spreadsheet into the trash
+# Add an index or sheet title to define which sheet to delete
+# Pass the (permanent = True) as the argument to permanently delete into
+sheet['A1'] = 'Name'
+sheet[2, 1] = 'Name'
+# Attributes a value into a cell
+
+ezsheets.convertAddress('A2')
+ezsheets.convertAddress(1,2)
+# Converts addresses, and converts them back
+ezsheets.getColumnLettersOf(2)
+# Converts into a letter of the column 
+ezsheets.getColumnNumberOf('B')
+# Converts into an alphabet of the alphabet
+
+sheet.getRow()
+# Returns the rows in a list
+sheet.getColumn()
+# Returns the columns in a list
+sheet.updateRow(Row, list value)
+# Overwrites the data in the row with the list values
+sheet.updateColumn(Column, list value)
+# Overwrites the data in the column with the list values
+rows = sheet.getRows()
+# Returns a list of list
+# Define it with a variable in order to change it
+sheet.updateRows(rows)
+# Updates the entire rows to the new list of lists
+sheet.rowCount
+# The number of rows in the sheet
+sheet.columnCount
+# The number of columns in the sheet
+sheet.columnCount = 4
+# You can set the amount by attributing a value, thus limiting the graph
+
+ss.createSheet('Spam')
+# Creates a new sheet at the end of the list of sheets
+# By default the added sheet added behind
+# Add an interger as a second argument to add at that position
+ss[0].clear() 
+# Clears the entire sheet of any values in the cell
+ss1[0].copyTo(ss2)
+# Copy the ss1's Sheet1 to the ss2 spreadsheet
+# Copied sheets are added similar to .createSheet
+ezsheet.IGNORE_QUOTA = True
+# Ignores all the erros
