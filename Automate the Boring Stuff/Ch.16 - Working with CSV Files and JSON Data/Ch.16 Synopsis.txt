@@ -1,0 +1,39 @@
+# CSV
+import csv
+# imports a module to read and write csv files
+exampleFile = open('example.csv')
+exampleReader = csv.reader(exampleFile)
+# opens the file, and then reads it 
+.line_num 
+# adds the current line for the list in a for loop
+# apparently the reader object can only be looped over once?
+
+outputFile = open('output.csv','w',newline='')
+outputWriter = csv.writer(outPutFile)
+# opens the file in write mode 
+# the purpose of the newline argument is to avoid double spacing which is the default setting
+outputWriter.writerow()
+# adds lines into the csv file
+outputFile.close()
+# closes the file 
+csvWriter = csv.writer(outputFile, delimiter='\t', lineterminator='\n\n')
+# changes the attributes, delimiter the thing between the words, linterminator is new lines
+
+# DictReader is basically the same thing, but instead uses dictionary instead of a list
+# Essentially you dont have to skip the first row when reading the csv file
+exampleFile = open('example.csv')
+exampleDictReader = csv.DictReader(exampleFile, ['time','name','amount'])
+# basically defines the the columsn first so that you can call it in the future
+exampleDictReader.writeheader()
+# actually writes down the header into the csv file
+
+=================================================================================================================================================
+
+# JSON
+import json
+json.loads()
+# loads means loading string
+# translate a string containing json data into python value
+json.dumps()
+# dumps means dump string
+# translate a python value into a string of json data
