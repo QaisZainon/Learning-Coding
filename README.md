@@ -1,2 +1,4 @@
-# Practice Folder
-This is where i dump all the exercises from Practice Python https://www.practicepython.org/
+# Learning Coding
+A place where i dump/back-up all the files scripts that i have worked on
+Relevant links
+Practice Python - http://www.practicepython.org/
