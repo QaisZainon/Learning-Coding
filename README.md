@@ -5,3 +5,4 @@ Automated the Boring Stuff - https://automatetheboringstuff.com/ <br />
 HTML Dog - https://htmldog.com/ <br />
 Practice Python - http://www.practicepython.org/ <br />
 Statistics for Financial Analysis - N/A <br />
+Think Stats2e - https://greenteapress.com/wp/think-stats-2e/
