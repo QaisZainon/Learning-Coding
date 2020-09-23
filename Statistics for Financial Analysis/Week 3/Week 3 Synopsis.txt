@@ -1,0 +1,9 @@
+data = pd.DataFrame()
+data['Population'] = [47, 48, 85, 20, 19, 13, 72, 16, 50, 60]
+a_sample_without_replacement = data['Population'].sample(5, replace = False)
+#.sample gives a random number #replace=False means that sampling is without a_sample_without_replacement
+#replace=True results in the sample being replaced, itll be able to be called again the next time, leading to duplicates
+.mean() .var(ddof=0) .std(ddpf=0) .shape[0] can be added to manipulate the Population
+
+just read the scripts lmao idk how to summarise
+

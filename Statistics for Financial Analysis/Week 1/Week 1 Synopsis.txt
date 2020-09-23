@@ -1,0 +1,41 @@
+Modules used for this program
+Pandas - Expressive data structures, real-world data analysis
+DataFrame - pre-processing data, handling missing values and pairwise correlation
+NumPy - numerical computing, shuffle data, random numbers and normal distribution
+Matplotlib - plotting package that produces high-quality figures, statistics, linear regression and time series analysis
+
+import pandas as pd #too make it shorter
+fb=pd.DataFrame.from_csv('data/facebook.csv') #imports data about facebok from csv into pandas
+
+fb.index[variable] #to get the index of the data
+fb.columns #gets columns
+fb.shape #gives the size of the table data, output would be observations and variables in the data
+fb.head() #gives first five rows #can pass an interger in the parenthesis to fix amount
+fb.tail() #gives last five rows
+fb.describe() #gives summary statistics for each column, specify in the parenthesis
+fb.loc['index', 'column'] #slicing data from DataFrame
+fb.iloc[1, 1] #slicing data from DataFrame,row number and column number
+#can also make the arguments ranges
+
+fb.iloc[1:1,1].plot() #built in plot function, needs variables in front 
+
+fb.['column'] #returns a single column
+fb.[['Open', 'Close']] #selects the specified columns
+fb['Price1'] = fb['Close'].shift(-1) #adds a new column, shift(-1) is to move the whole thing upward one column
+fb['PriceDiff'] = fb['Price1'] - fb['Close'] #making a new column for price difference
+fb['Return'] = fb['PriceDiff']/fb['Close'] #makes a new variable for the returns
+fb['Direction'] = [1 if fb.loc[ei, 'PriceDiff'] > 0 else -1 for ei in fb.index] #prescribes a value to the date based on Pricediff
+
+fb['Average3'] = (fb['Close'] + fb['Close'].shift(1) + fb['Close'].shift(2))/3 #finds the average of closed price for three days
+fb['MA40'] = fb['CLose'].rolling(40).mean() #moving average of closing price over 40 days
+fb['MA200'] = fb['Close'].rolling(200).mean() #200 days,rolling provides a rolling window calculation
+
+fb['Close'].plot() #plots all of it
+fb['MA40'].plot()
+fb['MA200'].plot()
+
+fb['Shares'] = [ 1 if fb.loc[ei, 'MA10'] > fb.loc[ei,'MA50'] else 0 for ei in fb.index]
+fb['Close1'] = fb['Close'].shift(-1)
+fb.iloc[500:505,:]
+fb['Profit'] = [fb.loc[ei,'Close1'] - fb.loc[ei,'Close'] if ms.loc[ei,'Shares'] == 1] else 0 for ei in fb.index]
+fb['wealth'] = fb['Profit'].cumsum() #cumulative summary
