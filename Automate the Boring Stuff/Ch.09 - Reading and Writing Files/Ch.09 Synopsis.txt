@@ -1,0 +1,70 @@
+#from pathlib import Path #different from the conventional import is that the only imports a specific function
+#Interestingly using normal Path,str and print results in different answers
+#Path lead to linux based answers, str has \\, while print has normal system path
+#You can use the '/' operator to add into paths,it will return the right format depending on the previous functions
+#The first value must be path if not an error will occur
+#Path.cwd() shows the current working directory
+#import os, os.chdir() would change the current working directory 
+#Path.home() shows your home directory
+#You can make new folders(directories) with os.makedirs()
+#Path('').mkdir() will do the same thing, however only one file rather than multiple
+
+#is_absolute() will return True if the path is absolute
+#Adding Path.cwd()/ in front of a relative path will make it an absolute path
+#Same thing can be done with Path.home()
+#os.path.abspath(path) returns an absolute path 
+#os.path.isabs(path) returns True or False based on if it is an absolute path
+#os.path.relpath(path,start) returns a string of relative path from start to path, cwd will be used if there is no start path
+
+#.anchor gives the anchor of the connected variable
+#.parent #gives parent, in path object not string
+#.name 
+#.stem #only the name and without the file type
+#.suffix #file type
+#.drive #gives drive type
+#.parents #evaluates to ancestor folders of the path
+#os has similar functions as well
+#os.path.dirname(path) #gives the directories of the file
+#os.path.basename(path) #gives the base name of the file
+#os.path.split(path) #gives dir name and base name together in tuple form
+#or could just do (os.path.dirname(path), os.path.split(path))
+#if you want to split the path, just use the typical .split but with (os.sep) as the argument
+#eg. v.split(os.sep), this returns it in string
+
+#os.path.getsize(path) #returns the size in bytes based on path argument
+#os.listdir(path) #returns file name strings for each path argument
+#list(v.glob('*')) #makes a list of all files, the asterik stands for multiple of any characters
+#can add an argument at the end of the * to make the command find the relevant string from the files
+#adding a ? represents any single character eg. list(v.glob('project?.docx'))
+#combining the* and ? can lead to complex glob expressions eg. ('*.?x?')
+
+#assume variable p has a path
+#p.exists() #True if the path exists, can also used for pendrives and harddrives
+#p.is_file() #True if path exists and is a file
+#p.is_dir() #True if path exists and is a directory
+
+#path module for reading and writing text, assume p has path
+#p.write_text('') #writes a simple string
+#p.read_text() #Reads the contents of the text
+
+#open() #opens the file, adding a 'r' at the end of the argument lets it into 'read mode'
+#.read() #to read the file
+#.readlines() #to read it in a string value from a file
+
+#open(,'w') #turns it into 'write mode', this will rewrite everything like a variable
+#open(.'a') #turns it into 'append mode', this will only add text rather than rewriting it
+#if file doesnt exist, then it will create a new blank file
+#.write('') #adds text
+#after reading and writing call the .close()
+
+#import shevle #this module lets you remember the variables that you key in
+# import shelve
+# shelfFile = shelve.open('mydata')
+# cats = ['Zophie', 'Pooka', 'Simon']
+# shelfFile['cats'] = cats
+# shelfFile.close()
+#shelve value can do both read and write at the same time
+#similar to dictionaries, you can use .keys,.value, and .items, should add a list() in order for the variables to be returned
+
+#can also use your typical open rather than shelve to make a .py to later import
+#however this method of saving variables is only for simple ones like strings,floats, integers, lists and dictionaries

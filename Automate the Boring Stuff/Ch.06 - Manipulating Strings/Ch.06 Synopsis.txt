@@ -1,0 +1,71 @@
+
+print("spam's") #Double Quotes
+print('Say hi to Bob\'s mother!') #Escape characters
+print('Hello there!\nHow are you?\nI\'m doing fine') #Escape characters
+print(r'That is carol\'s cats') #Raw Strings
+
+#Multiline Comment
+"""This is aa test Python program.
+This program was designed for Python 3, not Python 2.
+"""
+def spam():
+    """This is a multiline comment to help
+    explain what the spam() function does"""
+    print('Hello!')
+
+#String interpolation
+name = 'AI'
+age = 4000
+'My name is %s.I am %s years old.' %(name,age)
+#f-strings
+f'My name is {name}.Next year i will be {age+1}'
+
+#triple Quotes works well as it defines a string regardless
+''' 
+Works 
+really
+well
+'''
+
+#upperlower
+spam1 = 'Hello, world!'
+spam1 = spam1.upper()
+print(spam1)
+spam1 = spam1.lower()
+print(spam1)
+
+#Boolean values for string methods or isX()
+#islower() #checks if strings are lower case
+#isupper() #checks if strings are upper case
+#isalpha() #checks if string has only letters and isnt blank
+#isalnum() #checks for numbers and letters and isnt blank
+#isdecimal() #checks string to be decimal
+#isspace() #checks if string is spaces,tabs and newlines and isnt blank
+#istitle() #is true if words begins with uppercase followed by lowercase
+
+#startswith() #useful as an alternative instead of using ==
+#endswith()
+
+#join() #adds a string into a list
+#split() #takes a string and removes a string,returns with a list
+# can add a number behind with a comma to limit how many were removed 
+
+#partition() #splits the strings into tuples,splits only the first encounter
+#can also assign variables to each seperated string
+
+#rjust() #justifies the text with a value inserted in the parathesis, moves it to the right
+#ljust() #moves to left, can add second argument that fills the space eg *
+#centr() #moves to the centre, second argument applicable
+
+#strip() #returns a new strings without white spaces at the beginning and the end
+#lstip() #removes white space from left or right respectively
+#rstrip()
+#strip can also be used to delete characters similar to del() or replace()
+
+#ord() #gives a unicode code point of a single alphabet string
+#chr() #gives an alphabet string for an interger code point
+
+#pyperclip module
+#pyperclip.copy() and paste() function relating to your computers clipboard
+
+#sys.argv 

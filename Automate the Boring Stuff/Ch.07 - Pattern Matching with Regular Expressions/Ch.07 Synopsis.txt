@@ -1,0 +1,101 @@
+
+#\d #a regex=a digital character from 0-9
+#\d\d\d-\d\d\d-\d\d\d\d
+#{3} #adding this after a pattern indicates to match it 3 times
+#\d{3}-\d{3}-\d{4}
+
+#import re #to use regex functions
+#re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') #binds a variable to regex pattern object 
+#.search #used behind a variable binded to a regex object to find the regex in a string
+#eg. variable2 = variable1.search('string')
+#.group() #return any found matches from .search 
+#eg. variable2.group()
+#adding an interger in the parenthesis would result in different value based on the grouping
+#eg re.compiler(r'(\d\d\d)-(\d\d\d\d)')
+#eg. 1 or 2 would result in on of the two
+#putting 0 or blank returns the whole thing
+#.groups() would return the whole thing but in tuple form
+#v1,v2 = v.group would result in v1 binding with the first etc
+#if the regex needs to have a () then just use the \ to exclude it
+#the same applies to all 
+
+#| #is called a pipe, essentially or, if both occur in the stirng, th first will be returned
+#the | can be used as such: re.compile(r'Bat(man|mobile|copter|bat)')
+
+#the character ? gives an optional matching
+#eg. batRegex = re.compile(r'Bat(wo)?man'), the (wo) is optionalal i matching
+#the character * means ' match zero or more, essentially the ? character but unlimited times
+#the + means match one or more,essentially a nerfed * as it need to comeout once
+
+#the {} that multiples a string for regex can be used as a range
+#eg. (ha){3,5}, can leave the first or second number as well
+#python's match will only go for the longest, hence it is greedy
+#to make it "lazy" we need to add ? behind the object
+#eg.nongreedyHaRegex = re.compile(r'(Ha){3,5}?')
+#findall() #will return EVERY string it finds as compared to .search() returning the first
+# If it has groups, findall() will return with all of them in sets of tuples
+
+#Shorthand character classes
+#\d #Any numeric digit from 0 to 9
+#\D #Any character that is not a numeric digit from 0 to 9
+#\w #Any letter, numeric digit, or the underscore character.(Think of it as matching 'word' characters.)
+#\W #Any character that is not a letter,numeric digit or the underscore character
+#\s #Any space,tab or newline character.(Think of this as matching "space" characters.)
+#\S #Any character that is not a space, tab or newline
+
+#Often times you'd need to define your own character classes
+#eg. variable = re.compile(r'[aeiouAEIOU]') #regex for aeiou
+#can also use hypen eg. [a-zA-Z0-9]
+#you can make it a negative character by putting a (^)
+#eg. re.compile(r'[^aeiouAEIOU]') will result in other characters other than the ones in the bracket
+#put a (^) at the start of the string for regex and ($) at the end of the string
+#this will make the beginning and the end of the searched text match the regex
+#apparently if want to put on both youll need to do this re.compile(r'^\d+$')
+#adding a (.) at the start of the string, the . will match any character except a new line,it is called a 'wildcard'
+#you can make (.*), this means that it will match with anything, however it is in greedy mode
+#you can use the (.*?) to make it a non-greedy variant
+#however the (.*) does not match to newlines
+#passing the re.DOTALL as a second argument makes it match with all characters
+
+#TLDR of Regex Symbols
+#The ? matches zero or one of the preceding group.
+#The * matches zero or more of the preceding group.
+#The + matches one or more of the preceding group.
+#The {n} matches exactly n of the preceding group.
+#The {n,} matches n or more of the preceding group.
+#The {,m} matches 0 to m of the preceding group.
+#The {n,m} matches at least n and at most m of the preceding group.
+#{n,m}? or *? or +? performs a non-greedy match of the preceding group.
+#^spam means the string must begin with spam.
+#spam$ means the string must end with spam.
+#The . matches any character, except newline characters.
+#\d, \w, and \s match a digit, word, or space character, respectively.
+#\D, \W, and \S match anything except a digit, word, or space character, respectively.
+#[abc] matches any character between the brackets (such as a, b, or c).
+#[^abc] matches any character that isn’t between the brackets.
+
+#expressions are case sensitive
+#passing the re.IGNORECASE or re.I as a second argument to re.compile() ignores case sensitivity
+#eg. v=re.compile(r'something',re.I)
+
+#as .search is to find, .sub is to substitute, it is follow by an argument you want to replace with another normal argument
+#namesRegex = re.compile(r'Agent \w+') #regex is agent +name
+#namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.') 
+#first argument with what we replace with, second normal argument
+#applying \1 \2 \3 will refer to the groups that you want to substitue using the binded regex
+#agentNamesRegex = re.compile(r'Agent (\w)\w*')
+#agentNamesRegex.sub(r'\1****', 'Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.')
+#A**** told C**** that E**** knew B**** was a double agent.'
+
+#re.VERBOSEplaced behing re.compile() in order to ingnore all white spaces 
+#re.compile(r'''(
+    #(\d{3}|\(\d{3}\))?            # area code
+    #(\s|-|\.)?                    # separator
+    #\d{3}                         # first 3 digits
+    #(\s|-|\.)                     # separator
+    #\d{4}                         # last 4 digits
+    #(\s*(ext|x|ext.)\s*\d{2,5})?  # extension
+    #)''', re.VERBOSE)
+
+#you can combine all re.IGNORECASE,re.DOTALL and re.VERBOSE using the (|)
+#someRegexValue = re.compile('foo', re.IGNORECASE | re.DOTALL | re.VERBOSE)

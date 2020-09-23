@@ -1,0 +1,89 @@
+import openpyxl
+# Helps dealing with excel files
+wb = openpyxl.load_workbook('example.xlsx')
+# Opens an existing excel file 
+# Adding data_only = True as a secondary argument will return results of cells rather tha the formula
+wb.sheetnames 
+# Returns the workbook's sheets' names
+sheet = wb['Sheet3']
+# Selects the sheet's name
+sheet.title
+# Gets the sheets title as a string
+anotherSheet = wb.active
+# Gets the active sheet
+
+sheet['A1']
+# Gets the cell from the sheet
+sheet['A1'].value 
+# Gets the value from the cell
+c = sheet['B1']
+'Row %s, Column %s is %s' %(c.row, c.column, c.value)
+# gives the details
+'Cell %s is %s' %(c.coordinate, c.value)
+# gives coordinates
+sheet.cell(row=1, column=1)
+# alternative way to define cell
+# adding a .value returns value or changes it
+sheet.max_row
+# Gets the highest row number
+sheet.max_column
+# Gets the highest column number
+
+from openpyxl.utils import get_column_letter, column_index_from_string
+# imports column numbers and column alphabets
+get_column_letter(1)
+# gets column alphabets
+column_index_from_string('A')
+# gets number from column alphabet
+
+wb = openpyxl.Workbook()
+# Creates a blank workbook
+sheet.title = 'Other title name'
+# Changes the title name
+wb.save('example_copy.xlsx')
+# Save the workbook, if you dont run this command it wont be saved
+wb.create_sheet()
+# Add a new sheet 
+wb.create_sheet(index = 0, title = 'First Sheet')
+# can define postion as well as the name
+del wb['First Sheet']
+# deletes the sheet with the name 
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+sheet['A1'] = 'Hello, world!'
+# Edits the cell value
+
+form openpyxl.styles import Font 
+italic24Font = Font(size = 24, italic = True)
+# Create a font, returns a Font object
+sheet['A1'].font = italic24Font
+# Apply the font to A1
+# Keyword Argument for Font Objects
+name = 'Calibri' or 'Times New Roman'
+size = Integer
+bold = True
+italic = True
+
+sheet['B9'] = '=SUM(B1:B8)'
+# Adds a formula, similar as adding something to a cell
+sheet.row_dimensions[1].height = 70
+sheet.column_dimensions['B'].width = 20
+# Changes the size of the row or column, inputs are float or integer
+# Rows or Columns with the value of 0 hides it from the user
+# You could also add behind .hidden = True would hide it as well
+sheet.merge_cells('A1:D3')
+# merges the cells defined in the argument 
+# to define the value of merged cells, use the top left cell, eg sheet['A1']
+sheet.unmerge_cells('A1:D3')
+# unmerges cells
+
+sheet.freeze_panes = 'A2' 
+# freezes cells, the argument passed is always one more, eg this only freezes the first row
+# 'B1' only freezes the A column
+# to unfreeze panes you have to pass 'A1' or None
+# refer to BarChart.py to make barcharts
+# You can also change it into LineChart, ScatterChart and PieChart
+
+cell.row
+cell.column
+# gives the cell's column and row

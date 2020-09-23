@@ -1,0 +1,36 @@
+#import pyinputplus as pyip #import shortend to reduce repetitive typing
+
+#inputStr() #similar to input() but with pyip.functions built in
+#inputNum() #ensures input i a number and returns int or float
+#inputChoice() #ensures users enters one of the choices
+#inputMenu() #similar with inputchoice but with menu and numbered lettered options
+#inputDatetime() #Enters a date and time
+#inputYesNo() #input is either yes or no
+#inputBool() #similar to inputYesNo but with True or False
+#inputEmail() # ensures it is email
+#inputFilepath() #enters a valid path and filename, can also check existance of file
+#inputPassword() #displays* characters to protect sensitive information
+
+#You can pass a string in the parenthesis of input() or any other pyip function using (prompt)
+#eg Variable = pyip.InputNum(prompt = 'text') not necessary as you can just add a string
+#min=, max=, greaterThan=, lessThan= can be added as keyword arguments to define the range
+#eg.response = pyip.inputNum('Enter num: ', greaterThan=4)
+
+#blank=True can be inserted as a keyword argument in if you want input to be blank eg. a = pyip.inputNum(Blank=True)
+
+#limit=() #gives a limit of how many inputs
+#timeout=() #gives a limit of how long can it be left, its in seconds
+#both are used as an argument
+#failure leads to an line of text indicating an error, to circumvent this just add a default='N/A' as an additional argument
+
+#allowRegexes=() #allows a set of regexes #Regex symbols are accepted
+#blockRegexes=() #PyInputPlus wont accept certain Regexes if this block is used
+#if you have both, the allow list will override the block list
+
+#inputcustom() #gives you an option to make your own input
+
+#yesVal or #noVal can be passed in conjunction with the pyip.inputYesNo() to make it a different language
+
+#numbered=True add this argument for inputmenu()
+
+#https://pyinputplus.readthedocs.io/en/latest/
