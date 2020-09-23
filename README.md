@@ -4,4 +4,4 @@ Relevant links <br />
 Automated the Boring Stuff - https://automatetheboringstuff.com/ <br />
 HTML Dog - https://htmldog.com/ <br />
 Practice Python - http://www.practicepython.org/ <br />
-Coursera for business analytics - N/A <br />
+Statistics for Financial Analysis - N/A <br />
